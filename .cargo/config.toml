@@ -1,6 +1,3 @@
-[build]
-target = "thumbv8m.main-none-eabihf"
-
 [target.thumbv6m-none-eabi]
 runner = "probe-rs run --chip RP2040"
 

@@ -68,7 +68,6 @@ use smart_leds_trait_0_2::SmartLedsWrite as SmartLedsWrite02;
 ///     delay_for_at_least_60_microseconds();
 /// };
 ///```
-
 pub struct Ws2812Direct<P, SM, I>
 where
     I: AnyPin<Function = P::PinFunction>,
@@ -252,7 +251,6 @@ where
 ///     // Do other stuff here...
 /// };
 ///```
-
 pub struct Ws2812<P, SM, C, I>
 where
     C: CountDown,

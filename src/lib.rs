@@ -19,12 +19,21 @@ use fugit::{ExtU32, HertzU32, MicrosDurationU32};
 use cfg_if::cfg_if;
 
 cfg_if! {
-    if #[cfg(feature = "rp2040")] {
-        use rp2040_hal as hal;
-    } else if #[cfg(feature = "rp235x")] {
-        use rp235x_hal as hal;
-    } else {
-        compile_error!("Either 'rp2040' or 'rp235x' feature must be enabled.");
+    // 1. Both enabled
+    if #[cfg(all(feature = "rp2040", feature = "rp235x"))] {
+        compile_error!("Features 'rp2040' and 'rp235x' are mutually exclusive and cannot be enabled at the same time.");
+    } 
+    // 2. rp235x selected
+    else if #[cfg(feature = "rp235x")] {
+        pub use rp235x_hal as hal;
+    } 
+    // 3. rp2040 selected or default used
+    else if #[cfg(feature = "rp2040")] {
+        pub use rp2040_hal as hal;
+    } 
+    // 4 & 5. Nothing selected (either forgot to choose one, or default-features=false with no new features)
+    else {
+        compile_error!("Either 'rp2040' (default) or 'rp235x' feature must be enabled. Use `default-features = false` if you want to explicitly select a different HAL.");
     }
 }
 

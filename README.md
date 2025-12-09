@@ -4,3 +4,9 @@ Implements [`SmartLedsWrite`](https://docs.rs/smart-leds-trait/0.2.1/smart_leds_
 for the Raspberry's [RP2040](https://www.raspberrypi.org/products/rp2040/) using the PIO peripheral.
 
 Refer to the [`rp-hal`](https://github.com/rp-rs/rp-hal) for examples.
+
+Build example:
+
+```shell
+cargo build --example plasma2350 --features "rp235x" --no-default-features --target thumbv8m.main-none-eabihf
+```
